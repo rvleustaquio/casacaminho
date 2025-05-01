@@ -1,0 +1,30 @@
+<nav
+  class="top-0 left-0 right-0 bg-gray-100 border-gray-300 fixed h-[var(--nav-height)] border-b"
+>
+  <div class="h-14 gap-8 px-4 flex items-center justify-between">
+    <a class="shrink-0" href="/">Home</a>
+  </div>
+</nav>
+
+<main
+  class="bg-gray-50 grid min-h-dvh grid-cols-[54px_1fr] grid-rows-[1fr] pt-[var(--nav-height)]"
+>
+  <div class="relative col-start-1">
+    <div class="inset-0 absolute">
+      <div class="top-14.25 bottom-0 left-0 p-2 sticky h-full overflow-y-auto">
+        <nav class="gap-8 flex flex-col">
+          <p-button
+            icon="pi pi-bars"
+            [text]="true"
+            (click)="appmenu.toggle($event)"
+          />
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="pt-4 pl-4 pr-4 relative col-start-2">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+<p-tieredmenu #appmenu [model]="items" [popup]="true" />
