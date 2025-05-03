@@ -10,7 +10,7 @@ RUN npm run build
 FROM node:22.14.0-alpine AS development
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm i
 COPY . .
 CMD ["npm", "start", "--", "--host", "0.0.0.0"]
 

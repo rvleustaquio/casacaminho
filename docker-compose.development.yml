@@ -5,7 +5,7 @@ services:
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       TZ: America/Sao_Paulo
-      POSTGRES_INITDB_ARGS: '--encoding=UTF8 --lc-collate=C --lc-ctype=C'
+      POSTGRES_INITDB_ARGS: '--encoding=UTF8 --lc-collate=Portuguese_Brazil.1252 --lc-ctype=Portuguese_Brazil.1252'
     ports:
       - '5433:5432'
     env_file:
@@ -46,6 +46,36 @@ services:
       casacaminho:
         ipv4_address: 10.5.0.202
     command: -locations=filesystem:/scripts -connectRetries=3 migrate
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: development
+    container_name: backend-casacaminho
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+    networks:
+      casacaminho:
+        ipv4_address: 10.5.0.203
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: development
+    container_name: frontend-casacaminho
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./frontend:/app
+    networks:
+      casacaminho:
+        ipv4_address: 10.5.0.204
 
 networks:
   casacaminho:

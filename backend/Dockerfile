@@ -10,7 +10,7 @@ RUN npm run build
 FROM node:22.14.0-alpine AS development
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm i
 COPY . .
 CMD ["npm", "run", "start:dev"]
 
