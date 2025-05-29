@@ -59,6 +59,7 @@ services:
       - .env
     volumes:
       - ./backend:/app
+      - /app/node_modules
     networks:
       casacaminho:
         ipv4_address: 10.5.0.203
@@ -73,6 +74,7 @@ services:
       - '4200:4200'
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     networks:
       casacaminho:
         ipv4_address: 10.5.0.204

@@ -14,7 +14,7 @@ services:
       - postgres-casacaminho-data:/var/lib/postgresql/pgdata
     networks:
       casacaminho:
-        ipv4_address: 10.5.0.200
+        ipv4_address: 11.5.0.200
 
   pgadmin:
     depends_on:
@@ -27,7 +27,7 @@ services:
       - .env
     networks:
       casacaminho:
-        ipv4_address: 10.5.0.201
+        ipv4_address: 11.5.0.201
 
   flyway:
     depends_on:
@@ -37,20 +37,22 @@ services:
     environment:
       - FLYWAY_USER=${POSTGRES_USER}
       - FLYWAY_PASSWORD=${POSTGRES_PASSWORD}
-      - FLYWAY_URL=jdbc:postgresql://10.5.0.200:5432/${POSTGRES_DB}
+      - FLYWAY_URL=jdbc:postgresql://11.5.0.200:5432/${POSTGRES_DB}
     env_file:
       - .env
     volumes:
       - ./migration_scripts:/scripts
     networks:
       casacaminho:
-        ipv4_address: 10.5.0.202
+        ipv4_address: 11.5.0.202
     command: -locations=filesystem:/scripts -connectRetries=3 migrate
 
   backend:
+    depends_on:
+      - postgres-casacaminho
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile.backend
       target: development
     container_name: backend-casacaminho
     ports:
@@ -59,25 +61,29 @@ services:
       - .env
     volumes:
       - ./backend:/app
-      - /app/node_modules
+    working_dir: /app
+    command: npm run start:dev
     networks:
       casacaminho:
-        ipv4_address: 10.5.0.203
+        ipv4_address: 11.5.0.203
 
   frontend:
+    depends_on:
+      - backend
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile.frontend
       target: development
     container_name: frontend-casacaminho
     ports:
       - '4200:4200'
     volumes:
       - ./frontend:/app
-      - /app/node_modules
+    working_dir: /app
+    command: npm run start
     networks:
       casacaminho:
-        ipv4_address: 10.5.0.204
+        ipv4_address: 11.5.0.204
 
 networks:
   casacaminho:
@@ -85,8 +91,8 @@ networks:
     name: casacaminho
     ipam:
       config:
-        - subnet: 10.5.0.0/24
-          gateway: 10.5.0.1
+        - subnet: 11.5.0.0/24
+          gateway: 11.5.0.1
 
 volumes:
   postgres-casacaminho-data:

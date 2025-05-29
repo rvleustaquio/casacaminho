@@ -1,3 +1,30 @@
-<p-card header="Estados Civis">
-  <p class="m-0">Lorem ipsum dolor sit amet...</p>
+<p-card>
+  <p-table [value]="data" size="small">
+    <ng-template #caption>
+      <div class="flex justify-between">
+        <h3 class="m-0 text-lg font-semibold">{{ this.header }}</h3>
+        <div class="gap-2 flex">
+          <p-button label="Novo" icon="pi pi-plus" size="small"></p-button>
+          <p-button
+            icon="pi pi-refresh"
+            severity="secondary"
+            [outlined]="true"
+          ></p-button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th>Descrição</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-row>
+      <tr>
+        <td>{{ row.name }}</td>
+      </tr>
+    </ng-template>
+    <ng-template #footer>
+      In total there are {{ data ? data.length : 0 }} products.
+    </ng-template>
+  </p-table>
 </p-card>
