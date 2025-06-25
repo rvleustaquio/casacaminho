@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
+import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'root-features',
-  imports: [RouterOutlet, ButtonModule, TieredMenuModule, MenuModule],
+  imports: [
+    RouterOutlet,
+    ButtonModule,
+    TieredMenuModule,
+    MenuModule,
+    TooltipModule,
+    ToastModule,
+  ],
   templateUrl: './root-features.component.html',
 })
 export class RootFeaturesComponent {
@@ -20,14 +28,16 @@ export class RootFeaturesComponent {
         label: 'Tabelas',
         items: [
           {
-            label: 'Estado Civil',
+            label: 'Estados Civis',
             routerLink: 'estado-civil',
           },
           {
-            label: 'Situação do Assistido',
+            label: 'Situações do Assistido',
+            routerLink: 'situacao-assistido',
           },
           {
-            label: 'Prazo',
+            label: 'Prazos',
+            routerLink: 'prazo',
           },
         ],
       },
@@ -36,6 +46,7 @@ export class RootFeaturesComponent {
         items: [
           {
             label: 'Assistidos',
+            routerLink: 'assistido',
           },
         ],
       },

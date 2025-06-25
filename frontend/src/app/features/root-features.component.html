@@ -1,30 +1,29 @@
 <nav
-  class="top-0 left-0 right-0 bg-gray-100 border-gray-300 fixed h-[var(--nav-height)] border-b"
+  class="fixed left-0 right-0 top-0 z-40 h-[var(--nav-height)] border-b border-gray-300 bg-gray-100"
 >
-  <div class="h-14 gap-8 px-4 flex items-center justify-between">
-    <a class="shrink-0" href="/">Home</a>
+  <div class="flex h-14 items-center justify-between gap-8 px-4">
+    <a class="shrink-0" href="/">Casa do Caminho</a>
   </div>
 </nav>
 
-<main
-  class="bg-gray-50 grid min-h-dvh grid-cols-[54px_1fr] grid-rows-[1fr] pt-[var(--nav-height)]"
->
-  <div class="relative col-start-1">
-    <div class="inset-0 absolute">
-      <div class="top-14.25 bottom-0 left-0 p-2 sticky h-full overflow-y-auto">
-        <nav class="gap-8 flex flex-col">
-          <p-button
-            icon="pi pi-bars"
-            [text]="true"
-            (click)="appmenu.toggle($event)"
-          />
-        </nav>
-      </div>
-    </div>
-  </div>
-  <div class="pt-4 pl-4 pr-4 relative col-start-2">
+<div class="mt-14 flex">
+  <aside class="top-14.25 fixed bottom-0 left-0 overflow-y-auto p-2">
+    <nav class="flex flex-col gap-8">
+      <p-button
+        icon="pi pi-bars"
+        pTooltip="Menu"
+        tooltipPosition="right"
+        [text]="true"
+        (click)="appmenu.toggle($event)"
+      />
+    </nav>
+  </aside>
+
+  <main class="ml-14 flex-1 overflow-y-auto p-4">
     <router-outlet></router-outlet>
-  </div>
-</main>
+  </main>
+</div>
 
 <p-tieredmenu #appmenu [model]="items" [popup]="true" />
+
+<p-toast position="bottom-left" [baseZIndex]="5000" />

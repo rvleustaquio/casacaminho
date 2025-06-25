@@ -1,19 +1,19 @@
 CREATE TYPE comum.ENUM_TIPO_PESSOA AS ENUM ('F','J','O');
 
-CREATE TABLE comum.estado_civil
+CREATE TABLE comum.estados_civis
 (
     created_by VARCHAR(50)                            NOT NULL,
     created_at TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_by VARCHAR(50)                            NOT NULL,
     updated_at TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     deleted_by VARCHAR(50)                            NULL,
-    deleted_at TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    deleted_at TIMESTAMP(0)                           NULL,
     id         SERIAL PRIMARY KEY,
     descricao  TEXT                                   NOT NULL,
-    CONSTRAINT estado_civil_ukey UNIQUE (descricao)
+    CONSTRAINT estados_civis_ukey UNIQUE (descricao)
 );
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON comum.estado_civil TO usrsis;
+GRANT SELECT, INSERT, UPDATE, DELETE ON comum.estados_civis TO usrsis;
 
 CREATE TABLE comum.pessoas
 (
@@ -22,14 +22,14 @@ CREATE TABLE comum.pessoas
     updated_by        VARCHAR(50)                            NOT NULL,
     updated_at        TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     deleted_by        VARCHAR(50)                            NULL,
-    deleted_at        TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    deleted_at        TIMESTAMP(0)                           NULL,
     id                SERIAL PRIMARY KEY,
     nome              VARCHAR(100)                           NOT NULL,
     tipo              comum.ENUM_TIPO_PESSOA                 NOT NULL,
     cpf_cnpj          VARCHAR(14)                            NULL,
     dt_nascimento     DATE                                   NOT NULL,
     rg                TEXT                                   NULL,
-    id_estado_civil   INT REFERENCES comum.estado_civil      NOT NULL,
+    id_estado_civil   INT REFERENCES comum.estados_civis     NOT NULL,
     id_pessoa_conjuge INT REFERENCES comum.pessoas           NULL,
     id_pessoa_mae     INT REFERENCES comum.pessoas           NOT NULL,
     logradouro        TEXT                                   NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE comum.sit_assistidos
     updated_by VARCHAR(50)                            NOT NULL,
     updated_at TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     deleted_by VARCHAR(50)                            NULL,
-    deleted_at TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    deleted_at TIMESTAMP(0)                           NULL,
     id         SERIAL PRIMARY KEY,
     descricao  TEXT                                   NOT NULL,
     CONSTRAINT sit_assistidos_ukey UNIQUE (descricao)
@@ -63,7 +63,7 @@ CREATE TABLE comum.prazos
     updated_by VARCHAR(50)                            NOT NULL,
     updated_at TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     deleted_by VARCHAR(50)                            NULL,
-    deleted_at TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    deleted_at TIMESTAMP(0)                           NULL,
     id         SERIAL PRIMARY KEY,
     meses      SMALLINT,
     CONSTRAINT prazos_ukey UNIQUE NULLS NOT DISTINCT (meses)
@@ -78,7 +78,7 @@ CREATE TABLE comum.assistidos
     updated_by       VARCHAR(50)                            NOT NULL,
     updated_at       TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     deleted_by       VARCHAR(50)                            NULL,
-    deleted_at       TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    deleted_at       TIMESTAMP(0)                           NULL,
     id               SERIAL PRIMARY KEY,
     id_pessoa        INT REFERENCES comum.pessoas           NOT NULL,
     dt_matricula     DATE                                   NOT NULL,

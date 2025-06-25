@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { EstadosCivisModule } from './estados-civis/estados-civis.module';
+import { EstadosCivisModule } from './features/estados-civis/estados-civis.module';
 
 @Module({
   imports: [
