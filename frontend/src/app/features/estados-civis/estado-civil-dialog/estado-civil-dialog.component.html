@@ -7,33 +7,27 @@
   [draggable]="false"
 >
   <span class="p-text-secondary mb-8 block">
-    <form [formGroup]="form" class="grid gap-x-3 gap-y-3 sm:grid-cols-12">
+    <form [formGroup]="form" class="gap-x-3 gap-y-3 sm:grid-cols-12 grid">
       <div class="sm:col-span-12">
-        <label for="descricao">Descrição</label>
+        <b-label for="descricao" [required]="true">Descrição</b-label>
         <input
           type="text"
           pInputText
           id="descricao"
           fluid
-          [pAutoFocus]="true"
           formControlName="descricao"
         />
       </div>
     </form>
   </span>
 
-  <div class="flex justify-end gap-2">
-    <p-button
-      label="Cancelar"
-      severity="secondary"
-      [outlined]="true"
-      (onClick)="visible = false"
-    />
-    <p-button
-      label="Salvar"
+  <ng-template #footer>
+    <b-dialog-actions
+      [entity]="selected"
       [disabled]="!form.valid"
       [loading]="saving"
-      (click)="onSave()"
-    />
-  </div>
+      (onCancelar)="visible = false"
+      (onSalvar)="onSalvarAction()"
+    ></b-dialog-actions>
+  </ng-template>
 </p-dialog>

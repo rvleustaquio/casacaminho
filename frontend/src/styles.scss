@@ -6,7 +6,11 @@
 
 :root {
   color-scheme: light;
+
   --nav-height: 57px;
+
+  --p-overlay-modal-padding: 0.8rem;
+  --p-overlay-modal-border: 1px solid #e7e7e7;
 }
 
 html {
@@ -22,6 +26,17 @@ body {
 
 /* Overrides */
 
-label {
-  @apply mb-1 block;
+.p-dialog {
+  .p-dialog-header {
+    border-bottom: var(--p-overlay-modal-border);
+  }
+
+  .p-dialog-content {
+    padding-top: var(--p-overlay-modal-padding);
+  }
+
+  .p-dialog-footer {
+    border-top: var(--p-overlay-modal-border);
+    padding-top: var(--p-overlay-modal-padding);
+  }
 }

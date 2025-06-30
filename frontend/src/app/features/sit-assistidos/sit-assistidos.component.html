@@ -1,0 +1,54 @@
+<p-card>
+  <p-table
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [showCurrentPageReport]="true"
+    [value]="data"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+  >
+    <ng-template #caption>
+      <b-feature-toolbar
+        [header]="this.header"
+        (onNovo)="this.sitAssistidoDialog.show(true)"
+        (onLimparFiltros)="dt.clear()"
+        (onAtualizarLista)="this.load()"
+      ></b-feature-toolbar>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th>Descrição</th>
+        <th style="text-align: center; width: 100px">Ações</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-entity>
+      <tr>
+        <td>{{ entity.descricao }}</td>
+        <td style="text-align: center">
+          <b-feature-actions
+            (onEditar)="
+              this.sitAssistidoDialog.selected = entity;
+              this.sitAssistidoDialog.show(false)
+            "
+            [showExcluir]="!entity.ativo"
+            (onExcluir)="this.sitAssistidoDialog.selected = entity; onExcluir()"
+          ></b-feature-actions>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="2">Nenhum registro encontrado.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
+
+<sit-assistido-dialog (onSalvar)="onSalvar($event)"></sit-assistido-dialog>
+
+<p-confirmDialog />

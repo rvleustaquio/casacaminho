@@ -1,0 +1,302 @@
+<p-dialog
+  header="{{ header }}"
+  [(visible)]="visible"
+  [style]="{ width: '1280px' }"
+  [modal]="true"
+  [position]="'top'"
+  [draggable]="false"
+>
+  <span class="p-text-secondary mb-8 block">
+    <form [formGroup]="form" class="gap-x-3 gap-y-3 sm:grid-cols-12 grid">
+      <div class="sm:col-span-10">
+        <b-label for="descricao" [required]="true">Nome</b-label>
+        <input
+          type="text"
+          pInputText
+          id="descricao"
+          fluid
+          formControlName="nome"
+        />
+      </div>
+
+      <div class="sm:col-span-2">
+        <b-label for="descricao" [required]="true">RG</b-label>
+        <input
+          type="text"
+          pInputText
+          id="descricao"
+          fluid
+          formControlName="nome"
+        />
+      </div>
+
+      <div class="sm:col-span-2">
+        <b-label for="descricao" [required]="true">Dt. Matrícula</b-label>
+        <input
+          type="text"
+          pInputText
+          id="descricao"
+          fluid
+          formControlName="nome"
+        />
+      </div>
+
+      <div class="sm:col-span-2">
+        <b-label for="descricao" [required]="true">Prazo previsto</b-label>
+        <input
+          type="text"
+          pInputText
+          id="descricao"
+          fluid
+          formControlName="nome"
+        />
+      </div>
+
+      <div class="sm:col-span-8">
+        <b-label for="descricao" [required]="true">Turma</b-label>
+        <input
+          type="text"
+          pInputText
+          id="descricao"
+          fluid
+          formControlName="nome"
+        />
+      </div>
+
+      <div class="sm:col-span-12">
+        <p-tabs value="0">
+          <p-tablist>
+            <p-tab value="0">Dados Pessoais</p-tab>
+            <p-tab value="1">Serviços</p-tab>
+          </p-tablist>
+          <p-tabpanels>
+            <p-tabpanel value="0">
+              <div class="gap-x-3 gap-y-3 sm:grid-cols-12 grid">
+                <div class="sm:col-span-4">
+                  <b-label for="nome" [required]="true">CPF</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-4">
+                  <b-label for="nome" [required]="true">Dt. Nascimento</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-4">
+                  <b-label for="nome" [required]="true">Estado Civil</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-8">
+                  <b-label for="nome" [required]="true">Cônjuge</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <b-label for="nome" [required]="true">Dt. Nascimento</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <b-label for="nome" [required]="true">RG</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-12">
+                  <b-label for="nome" [required]="true">Mãe</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-8">
+                  <b-label for="nome" [required]="true">Endereço</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-1">
+                  <b-label for="nome" [required]="true">Número</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-3">
+                  <b-label for="nome" [required]="true">Complemento</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-4">
+                  <b-label for="nome" [required]="true">Bairro</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-4">
+                  <b-label for="nome" [required]="true">Cidade</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <b-label for="nome" [required]="true">UF</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <b-label for="nome" [required]="true">CEP</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-8">
+                  <b-label for="nome" [required]="true">Referência</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <b-label for="nome" [required]="true">Telefone</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <b-label for="nome" [required]="true">Celular</b-label>
+                  <input
+                    type="text"
+                    pInputText
+                    id="nome"
+                    fluid
+                    formControlName="nome"
+                  />
+                </div>
+
+                <div class="sm:col-span-12">
+                  <b-label for="nome" [required]="true">Observação</b-label>
+                  <textarea
+                    rows="5"
+                    pTextarea
+                    fluid
+                    formControlName="nome"
+                  ></textarea>
+                </div>
+              </div>
+            </p-tabpanel>
+            <p-tabpanel value="1">
+              <p class="m-0">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae ab illo inventore veritatis et quasi architecto beatae
+                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
+                voluptas sit aspernatur aut odit aut fugit, sed quia
+                consequuntur magni dolores eos qui ratione voluptatem sequi
+                nesciunt. Consectetur, adipisci velit, sed quia non numquam eius
+                modi.
+              </p>
+            </p-tabpanel>
+          </p-tabpanels>
+        </p-tabs>
+      </div>
+    </form>
+  </span>
+
+  <ng-template #footer>
+    <b-dialog-actions
+      [entity]="selected"
+      [disabled]="!form.valid"
+      [loading]="saving"
+      [showSalvarContinuar]="true"
+      (onCancelar)="visible = false"
+      (onSalvar)="onSalvarAction()"
+      (onSalvarContinuar)="onSalvarContinuarAction()"
+    ></b-dialog-actions>
+  </ng-template>
+</p-dialog>

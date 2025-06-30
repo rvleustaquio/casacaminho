@@ -1,0 +1,54 @@
+<div>
+  @if (entity) {
+    <p-button
+      icon="pi pi-info-circle"
+      [text]="true"
+      (click)="op.toggle($event)"
+    />
+  }
+
+  <p-popover #op>
+    <div class="gap-2 flex">
+      <table class="audit-entity-info">
+        <tbody>
+          <tr>
+            <td>Criado por</td>
+            <td>{{ entity?.createdBy }}</td>
+            <td>{{ entity?.createdAt | date: "dd/MM/yyyy HH:mm" }}</td>
+          </tr>
+          <tr>
+            <td>Atualizado por</td>
+            <td>{{ entity?.updatedBy }}</td>
+            <td>{{ entity?.updatedAt | date: "dd/MM/yyyy HH:mm" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </p-popover>
+</div>
+
+<div class="gap-2 flex">
+  <p-button
+    label="Salvar"
+    [disabled]="disabled"
+    [loading]="loading"
+    (onClick)="onSalvarAction()"
+  />
+
+  @if (showSalvarContinuar) {
+    <p-button
+      label="Salvar e Continuar"
+      [outlined]="true"
+      [disabled]="disabled"
+      [loading]="loading"
+      (onClick)="onSalvarContinuarAction()"
+    />
+  }
+
+  <p-button
+    label="Cancelar"
+    severity="secondary"
+    [outlined]="true"
+    (onClick)="onCancelarAction()"
+  />
+</div>

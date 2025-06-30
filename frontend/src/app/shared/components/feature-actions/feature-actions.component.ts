@@ -1,23 +1,25 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
-  selector: 'feature-actions',
+  selector: 'b-feature-actions',
   imports: [ButtonModule, TooltipModule],
   templateUrl: './feature-actions.component.html',
 })
 export class FeatureActionsComponent {
   // External properties
-  @Output() onEditing = new EventEmitter();
-  @Output() onRemoving = new EventEmitter();
+  @Input() showEditar: boolean = true;
+  @Input() showExcluir: boolean = true;
+  @Output() onEditar = new EventEmitter();
+  @Output() onExcluir = new EventEmitter();
 
   // Events methods
-  onEditingAction() {
-    this.onEditing.emit();
+  onEditarAction() {
+    this.onEditar.emit();
   }
 
-  onRemovingAction() {
-    this.onRemoving.emit();
+  onExcluirAction() {
+    this.onExcluir.emit();
   }
 }

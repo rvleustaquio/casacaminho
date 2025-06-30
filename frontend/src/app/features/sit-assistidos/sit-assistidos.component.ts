@@ -7,43 +7,45 @@ import { TableModule } from 'primeng/table';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { finalize } from 'rxjs';
 import {
-  EstadoCivil,
-  EstadoCivilService,
-} from '../../services/backend/estado-civil.service';
+  SitAssistido,
+  SitAssistidoService,
+} from '../../services/backend/sit-assistido.service';
 import { ToastService } from '../../services/toast.service';
 import { FeatureActionsComponent } from '../../shared/components/feature-actions/feature-actions.component';
+import { FeatureToolbarComponent } from '../../shared/components/feature-toolbar/feature-toolbar.component';
 import HelperFunctions from '../../shared/helper-functions';
-import { EstadoCivilDialogComponent } from './estado-civil-dialog/estado-civil-dialog.component';
+import { SitAssistidoDialogComponent } from './sit-assistido-dialog/sit-assistido-dialog.component';
 
 @Component({
-  selector: 'estado-civil',
+  selector: 'sit-assistidos',
   imports: [
     CardModule,
     TableModule,
     ButtonModule,
     ToggleButtonModule,
-    EstadoCivilDialogComponent,
+    SitAssistidoDialogComponent,
     FeatureActionsComponent,
     ConfirmDialogModule,
+    FeatureToolbarComponent,
   ],
-  templateUrl: './estado-civil.component.html',
-  providers: [ConfirmationService, EstadoCivilService],
+  templateUrl: './sit-assistidos.component.html',
+  providers: [ConfirmationService, SitAssistidoService],
 })
-export class EstadoCivilComponent {
+export class SitAssistidosComponent {
   // dependencies
   private toastService = inject(ToastService);
   private confirmationService = inject(ConfirmationService);
-  private estadoCivilService = inject(EstadoCivilService);
+  private sitAssistidoService = inject(SitAssistidoService);
 
   // Layout properties
-  header = 'Estados Civis';
+  header = 'Situações dos Assistidos';
   loading = false;
-  data: EstadoCivil[] = [];
+  data: SitAssistido[] = [];
   total: number = 0;
 
   // Dialog properties
-  @ViewChild(EstadoCivilDialogComponent)
-  estadoCivilDialog!: EstadoCivilDialogComponent;
+  @ViewChild(SitAssistidoDialogComponent)
+  sitAssistidoDialog!: SitAssistidoDialogComponent;
 
   // #region lifecycle hooks
   ngOnInit() {
@@ -51,29 +53,25 @@ export class EstadoCivilComponent {
   }
 
   // #region events
-  onRefresh() {
-    this.load();
-  }
-
-  onSave(estadoCivil: EstadoCivil) {
-    if (!this.estadoCivilDialog.selected) {
-      this.data.unshift(estadoCivil);
+  onSalvar(sitAssistido: SitAssistido) {
+    if (!this.sitAssistidoDialog.selected) {
+      this.data.unshift(sitAssistido);
     } else {
       this.data[
         HelperFunctions.findIndexById(
-          this.estadoCivilDialog.selected.id,
+          this.sitAssistidoDialog.selected.id,
           this.data,
           'id',
         )
-      ] = estadoCivil;
+      ] = sitAssistido;
     }
 
     this.data = [...this.data];
   }
 
-  onRemoving() {
+  onExcluir() {
     this.confirmationService.confirm({
-      message: `Confirma a exclusão do registro (${this.estadoCivilDialog.selected?.descricao})?`,
+      message: `Confirma a exclusão do registro (${this.sitAssistidoDialog.selected?.descricao})?`,
       header: `Excluindo ${this.header}`,
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-text',
@@ -82,21 +80,21 @@ export class EstadoCivilComponent {
       accept: () => {
         this.loading = true;
 
-        this.estadoCivilService
-          .delete(this.estadoCivilDialog.selected?.id)
+        this.sitAssistidoService
+          .delete(this.sitAssistidoDialog.selected?.id)
           .pipe(finalize(() => (this.loading = false)))
           .subscribe({
             next: (ret) => {
               this.data.splice(
                 HelperFunctions.findIndexById(
-                  this.estadoCivilDialog.selected?.id,
+                  this.sitAssistidoDialog.selected?.id,
                   this.data,
                   'id',
                 ),
                 1,
               );
 
-              this.estadoCivilDialog.selected = undefined;
+              this.sitAssistidoDialog.selected = undefined;
               this.data = [...this.data];
               this.toastService.simple(ret);
             },
@@ -111,7 +109,7 @@ export class EstadoCivilComponent {
   load() {
     this.loading = true;
 
-    this.estadoCivilService
+    this.sitAssistidoService
       .getAll()
       .pipe(finalize(() => (this.loading = false)))
       .subscribe({

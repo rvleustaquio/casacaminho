@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  margin-bottom: calc(var(--spacing) * 1);
+}
+
+#required-icon {
+  color: #e41b1b;
+  cursor: default;
+  font-weight: 900;
+  margin-bottom: 3px;
+}

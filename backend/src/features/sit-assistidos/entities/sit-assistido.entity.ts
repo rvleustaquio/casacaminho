@@ -7,8 +7,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ schema: 'comum', name: 'estados_civis' })
-export class EstadoCivil {
+@Entity({ schema: 'comum', name: 'sit_assistidos' })
+export class SitAssistido {
   @Column({ name: 'created_by' })
   createdBy: string;
 
@@ -32,4 +32,7 @@ export class EstadoCivil {
 
   @Column()
   descricao: string;
+
+  @Column()
+  ativo: boolean;
 }

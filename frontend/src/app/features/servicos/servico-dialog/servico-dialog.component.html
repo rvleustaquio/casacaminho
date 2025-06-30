@@ -1,0 +1,33 @@
+<p-dialog
+  header="{{ header }}"
+  [(visible)]="visible"
+  [style]="{ width: '550px' }"
+  [modal]="true"
+  [position]="'top'"
+  [draggable]="false"
+>
+  <span class="p-text-secondary mb-8 block">
+    <form [formGroup]="form" class="gap-x-3 gap-y-3 sm:grid-cols-12 grid">
+      <div class="sm:col-span-12">
+        <b-label for="descricao" [required]="true">Descrição</b-label>
+        <input
+          type="text"
+          pInputText
+          id="descricao"
+          fluid
+          formControlName="descricao"
+        />
+      </div>
+    </form>
+  </span>
+
+  <ng-template #footer>
+    <b-dialog-actions
+      [entity]="selected"
+      [disabled]="!form.valid"
+      [loading]="saving"
+      (onCancelar)="visible = false"
+      (onSalvar)="onSalvarAction()"
+    ></b-dialog-actions>
+  </ng-template>
+</p-dialog>

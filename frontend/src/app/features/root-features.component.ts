@@ -29,15 +29,19 @@ export class RootFeaturesComponent {
         items: [
           {
             label: 'Estados Civis',
-            routerLink: 'estado-civil',
+            routerLink: 'estados-civis',
           },
           {
             label: 'Situações do Assistido',
-            routerLink: 'situacao-assistido',
+            routerLink: 'sit-assistidos',
           },
           {
             label: 'Prazos',
-            routerLink: 'prazo',
+            routerLink: 'prazos',
+          },
+          {
+            label: 'Serviços',
+            routerLink: 'servicos',
           },
         ],
       },
@@ -46,7 +50,7 @@ export class RootFeaturesComponent {
         items: [
           {
             label: 'Assistidos',
-            routerLink: 'assistido',
+            routerLink: 'assistidos',
           },
         ],
       },

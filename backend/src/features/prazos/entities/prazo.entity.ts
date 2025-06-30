@@ -7,8 +7,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ schema: 'comum', name: 'estados_civis' })
-export class EstadoCivil {
+@Entity({ schema: 'comum', name: 'prazos' })
+export class Prazo {
   @Column({ name: 'created_by' })
   createdBy: string;
 
@@ -31,5 +31,5 @@ export class EstadoCivil {
   id: number;
 
   @Column()
-  descricao: string;
+  meses: number;
 }

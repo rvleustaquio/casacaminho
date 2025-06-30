@@ -1,0 +1,30 @@
+<div class="flex justify-between">
+  <div class="flex items-center gap-2">
+    <h3 class="m-0 text-lg font-semibold">{{ header }}</h3>
+    <p-divider layout="vertical" />
+    <p-button
+      label="Novo"
+      icon="pi pi-plus"
+      (onClick)="onNovoAction()"
+    ></p-button>
+  </div>
+
+  <div class="flex gap-2">
+    <p-button
+      icon="pi pi-filter-slash"
+      severity="secondary"
+      pTooltip="Limpar filtros"
+      tooltipPosition="bottom"
+      [outlined]="true"
+      (onClick)="onLimparFiltrosAction()"
+    ></p-button>
+    <p-button
+      icon="pi pi-refresh"
+      severity="secondary"
+      pTooltip="Atualizar lista"
+      tooltipPosition="bottom"
+      [outlined]="true"
+      (onClick)="onAtualizarListaAction()"
+    ></p-button>
+  </div>
+</div>

@@ -1,56 +1,58 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AutoFocusModule } from 'primeng/autofocus';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { finalize } from 'rxjs';
 import {
-  EstadoCivil,
-  EstadoCivilService,
-} from '../../../services/backend/estado-civil.service';
+  Servico,
+  ServicoService,
+} from '../../../services/backend/servico.service';
 import { ToastService } from '../../../services/toast.service';
+import { DialogActionsComponent } from '../../../shared/components/dialog-actions/dialog-actions.component';
+import { LabelComponent } from '../../../shared/components/label/label.component';
 
 @Component({
-  selector: 'estado-civil-dialog',
+  selector: 'servico-dialog',
   imports: [
     DialogModule,
     ButtonModule,
     InputTextModule,
-    AutoFocusModule,
     ReactiveFormsModule,
+    LabelComponent,
+    DialogActionsComponent,
   ],
-  templateUrl: './estado-civil-dialog.component.html',
+  templateUrl: './servico-dialog.component.html',
 })
-export class EstadoCivilDialogComponent {
+export class ServicoDialogComponent {
   // dependencies
   private toastService = inject(ToastService);
   private formBuilder = inject(FormBuilder);
-  private estadoCivilService = inject(EstadoCivilService);
+  private servicoService = inject(ServicoService);
 
   // Layout properties
-  titulo = 'Estado Civil';
+  titulo = 'Serviços';
   header = '';
   visible = false;
   saving: boolean = false;
-  selected?: EstadoCivil;
+  selected?: Servico;
 
-  @Output() onSaving = new EventEmitter<EstadoCivil>();
+  @Output() onSalvar = new EventEmitter<Servico>();
 
   form = this.formBuilder.group({
     descricao: ['', [Validators.required]],
   });
 
   // #region events
-  onSave() {
+  onSalvarAction() {
     this.saving = true;
 
-    this.estadoCivilService
+    this.servicoService
       .postOrPut(this.form.value, this.selected?.id)
       .pipe(finalize(() => (this.saving = false)))
       .subscribe({
         next: (ret: any) => {
-          this.onSaving.emit(ret.entity);
+          this.onSalvar.emit(ret.entity);
 
           this.toastService.simple(ret);
 
@@ -76,7 +78,7 @@ export class EstadoCivilDialogComponent {
     this.form.reset();
 
     if (novo) this.selected = undefined;
-    else this.form.patchValue(<EstadoCivil>this.selected);
+    else this.form.patchValue(<Servico>this.selected);
   }
   // #endregion
 }
